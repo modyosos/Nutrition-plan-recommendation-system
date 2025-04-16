@@ -13,9 +13,16 @@ import warnings
 import uuid
 import uvicorn
 from typing import Dict, Any, List
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Fat2Fit Meal Planner API")
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    allow_credentials=True,
+    allow_methods=['*'],
+    allow_headers=['*'],
+)
 warnings.filterwarnings("ignore", category=UserWarning, module="huggingface_hub")
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
